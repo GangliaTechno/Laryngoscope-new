@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   late CameraController cameraController;
    final ImagePicker _imagePicker = ImagePicker();
   int selectedCameraIndex = 0;
-  late Battery _battery; 
+  late final  Battery _battery = Battery(); 
   Timer? _timer;
   List<CameraDescription> cameras = [];
   HomeBloc() : super(HomeInitial()) {
@@ -28,11 +28,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
    on<CheckBatteryLevel>((event, emit) async {
   try {
-    final batteryLevel = await _battery.batteryLevel;
-    print("Battery Level: $batteryLevel");
-    if (batteryLevel < 80) {
-      print("Emitting BatteryLow state with level $batteryLevel");
-      emit(BatteryLow(batteryLevel));
+    final batterylevel = await _battery.batteryLevel;
+    print("Battery Level: $batterylevel");
+    if (batterylevel < 25) {
+      print("Emitting BatteryLow state with level $batterylevel");
+      emit(BatteryLow(batterylevel));
     } else {
       emit(BatteryNormal());
     }
@@ -46,10 +46,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         });
 
 
-
-      on<VideoCallIconClicked>((event, emit) {
-        emit(LoadVideoCallPage());
-      });
 
 
        on<CameraIconClickedEvent>((event, emit) async {

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/core/app_pallette.dart';
-import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/elevated_button.dart';
 import 'package:zoom_widget/zoom_widget.dart';
@@ -20,7 +19,8 @@ class ImagePickerPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
-              Navigator.push(context, HomeScreen.route(context));
+              context.read<ImagePickerBloc>().add(DeleteImageEvent());
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back_ios,

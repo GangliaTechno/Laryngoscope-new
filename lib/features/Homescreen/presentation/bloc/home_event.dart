@@ -18,7 +18,4 @@ class CameraToggleEvent extends HomeEvent {}
 class CheckBatteryLevel  extends HomeEvent{}
 
 
-class VideoCallIconClicked extends HomeEvent{}
-
-
 class CameraIconClickedEvent extends HomeEvent {}

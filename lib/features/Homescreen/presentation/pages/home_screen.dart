@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/features/Homescreen/presentation/bloc/home_bloc.dart';
 import 'package:laryngoscope/features/Homescreen/presentation/widgets/icon_widgets.dart';
 import 'package:laryngoscope/features/camerapreview/presentation/pages/camera_preview.dart';
-import 'package:laryngoscope/features/videocall/presentation/pages/videocall_screen.dart';
+
 
 class HomeScreen extends StatelessWidget {
   static route(_) => MaterialPageRoute(builder: (context) => HomeScreen());
@@ -27,10 +27,6 @@ class HomeScreen extends StatelessWidget {
               showLowBatteryDialog(context, state.batteryLevel);
             }
 
-            
-            if(state is LoadVideoCallPage){
-              Navigator.push(context, VideocallScreen.route(context));
-            }
              if (state is OpenCameraSuccess) {
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   SnackBar(content: Text('Image saved at ${state.imagePath}')),
@@ -73,7 +69,6 @@ class HomeScreen extends StatelessWidget {
               : null,
           body: GestureDetector(
             onTap: () {
-              context.read<HomeBloc>().add(CheckBatteryLevel());
               context.read<HomeBloc>().add(BodyClicked());
             },
             child: CameraPreviewPage(),

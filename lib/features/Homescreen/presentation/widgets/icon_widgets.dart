@@ -5,6 +5,7 @@ import 'package:laryngoscope/features/Homescreen/presentation/bloc/home_bloc.dar
 import 'package:laryngoscope/features/camerapreview/presentation/bloc/camera_preview_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/pages/image_picker_page.dart';
+import 'package:laryngoscope/features/videocall/presentation/pages/videocall_screen.dart';
 import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
 import 'package:laryngoscope/features/videopicker/presentation/pages/video_picker_page.dart';
 import '../../../../core/app_pallette.dart';
@@ -72,7 +73,7 @@ Widget selectVideoIcon(BuildContext context) {
 Widget videoCallIcon(BuildContext context) {
   return IconButton(
       onPressed: () {
-       context.read<HomeBloc>().add(VideoCallIconClicked());
+       Navigator.push(context, VideocallScreen.route(context));
       },
       icon: Icon(Icons.video_call, color: AppPallette.iconBg, size: 25));
 }
@@ -105,17 +106,24 @@ Widget flipCameraButton(BuildContext context) {
 
   void showLowBatteryDialog(BuildContext context, int batteryLevel) {
   showDialog(
+    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Low Battery'),
-        content: Text('Battery level is low: $batteryLevel%'),
+      return AlertDialog(  
+        title: Row(
+          children: [
+            Text('Low Battery',style: TextStyle(fontWeight: FontWeight.bold),),
+            Icon(Icons.battery_1_bar,color: Colors.red,)
+          ],
+        ),
+        content: Text('your Battery level is low please charge your device.'
+        ,style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('OK'),
+            child: Text('OK',style: TextStyle(color: AppPallette.iconBg),),
           ),
         ],
       );

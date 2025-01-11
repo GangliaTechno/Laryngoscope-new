@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laryngoscope/core/app_pallette.dart';
-import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.dart';
 import 'package:laryngoscope/features/videocall/presentation/pages/call.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/elevated_button.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/text_feild.dart';
@@ -22,7 +21,7 @@ class VideocallScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            Navigator.push(context, HomeScreen.route(context));
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,

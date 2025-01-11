@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/core/app_pallette.dart';
-import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/elevated_button.dart';
 import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
 import 'package:video_player/video_player.dart';
@@ -35,7 +34,8 @@ class VideoPickerPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {
-              Navigator.push(context, HomeScreen.route(context));
+              context.read<VideoPickerBloc>().add(DeleteVideoEvent());
+                    Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back_ios,

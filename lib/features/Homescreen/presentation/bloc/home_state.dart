@@ -37,7 +37,7 @@ class BatteryLow extends HomeState {
 
 class BatteryNormal extends HomeState {}
 
-class LoadVideoCallPage extends HomeState{}
+
 
 
 class OpenCameraSuccess extends HomeState{
